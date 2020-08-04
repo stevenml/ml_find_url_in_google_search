@@ -1,0 +1,15 @@
+{
+  "short_name": "ml_find_url_in_google_search_web",
+  "name": "ml_find_url_in_google_search_web",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ],
+  "start_url": "./index.html",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}

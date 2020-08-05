@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 
 namespace ml_find_url_in_google_search_web.Services.Interfaces
 {
-	interface IGoogleSearchService
+	public interface IGoogleSearchService
 	{
-		get
+		Task<List<int>> FindOccurrences(string searchTerm, string occurrenceTerm, int numToCheck);
 	}
 }

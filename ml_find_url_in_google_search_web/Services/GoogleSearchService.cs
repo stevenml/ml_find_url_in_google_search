@@ -23,10 +23,11 @@ namespace ml_find_url_in_google_search_web.Services
 		{
 			try
 			{
-				var httpResponse = await _httpClient.GetAsync(_baseSearchUrl);
+				var httpResponse = await _httpClient.GetAsync(string.Format(_baseSearchUrl, searchTerm, numToCheck));
 				var contents = await httpResponse.Content.ReadAsStringAsync();
 				var matches = Regex.Matches(contents, @"(<div class=""kCrYT""><a href=).*?>");
-				var foundIndexes = matches.Where(x => x.Value.Contains(occurrenceTerm)).Select(x => x.Index).ToList();
+				var foundIndexes = matches.Select((value, index) => new { value, index })
+					.Where(x => x.value.Value.Contains(occurrenceTerm)).Select(x => x.index + 1).ToList();
 
 				return foundIndexes;
 			}

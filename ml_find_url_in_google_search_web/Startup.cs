@@ -4,7 +4,10 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
+using ml_find_url_in_google_search_web.Services;
+using ml_find_url_in_google_search_web.Services.Interfaces;
 using System.Net.Http;
 
 namespace ml_find_url_in_google_search_web
@@ -24,7 +27,8 @@ namespace ml_find_url_in_google_search_web
 
 			services.AddControllersWithViews();
 
-			services.AddSingleton<HttpClient>();
+			services.TryAddSingleton<HttpClient>();
+			services.TryAddScoped<IGoogleSearchService, GoogleSearchService>();
 
 			// In production, the React files will be served from this directory
 			services.AddSpaStaticFiles(configuration =>

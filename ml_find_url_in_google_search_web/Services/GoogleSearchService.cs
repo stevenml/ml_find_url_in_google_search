@@ -27,7 +27,7 @@ namespace ml_find_url_in_google_search_web.Services
 				var contents = await httpResponse.Content.ReadAsStringAsync();
 				var matches = Regex.Matches(contents, @"(<div class=""kCrYT""><a href=).*?>");
 				var foundIndexes = matches.Select((value, index) => new { value, index })
-					.Where(x => x.value.Value.Contains(occurrenceTerm)).Select(x => x.index + 1).ToList();
+					.Where(x => x.value.Value.ToLower().Contains(occurrenceTerm.ToLower())).Select(x => x.index + 1).ToList();
 
 				return foundIndexes;
 			}
